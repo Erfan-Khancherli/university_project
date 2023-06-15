@@ -1,0 +1,18 @@
+[
+    {
+        "container_number": 2,
+        "Maximum_weight": "12000",
+        "Maximum_package_number": "100",
+        "ContainerType": "freezer",
+        "load_package_list": [],
+        "container_Minimum_temperature": "-30"
+    },
+    {
+        "container_number": 3,
+        "Maximum_weight": "50000",
+        "Maximum_package_number": "1",
+        "ContainerType": "freezer",
+        "load_package_list": [],
+        "container_Minimum_temperature": "-40"
+    }
+]

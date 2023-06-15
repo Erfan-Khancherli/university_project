@@ -1,0 +1,24 @@
+[
+    {
+        "package_number": 3,
+        "weight": "50",
+        "destination": "qom",
+        "origin": "tehran",
+        "package_type": "breakable"
+    },
+    {
+        "package_number": 2,
+        "weight": "555",
+        "destination": "tehran",
+        "origin": "qom",
+        "package_type": "cold",
+        "Minimum_temperature": "12"
+    },
+    {
+        "package_number": 1,
+        "weight": "1234",
+        "destination": "qwer",
+        "origin": "zxcv",
+        "package_type": "breakable"
+    }
+]
