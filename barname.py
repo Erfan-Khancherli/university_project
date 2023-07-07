@@ -20,54 +20,69 @@ class barname():
                 q.append(data[0]['container_list']['container_number'])
                 w=[]
                 # wthis is for make packages(object) from barnameh
-                # for i in data:
-                    # print(i)
-                    # if i['container_list']['load_package_list']['package_type'] == 'breakable':
-                        
-                    #     packages_list.append(Transportation.Package.create_package(i['container_list']['load_package_list']['package_type'],i['container_list']['load_package_list']['package_number'],i['container_list']['load_package_list']['weight'], i['container_list']['load_package_list']['destination'], i['container_list']['load_package_list']['origin']))
-                    # elif i['container_list']['load_package_list']['package_type'] == 'cold':
-                        
-                    #     packages_list.append(Transportation.Package.create_package(i['container_list']['load_package_list']['package_type'],i['container_list']['load_package_list']['package_number'],i['container_list']['load_package_list']['weight'], i['container_list']['load_package_list']['destination'], i['container_list']['load_package_list']['origin'] , i['container_list']['load_package_list']['Minimum_temperature']))
-                    # elif i['container_list']['load_package_list']['package_type'] =='Default':
-                        
-                    #     packages_list.append(Transportation.Package.create_package(i['container_list']['load_package_list']['package_type'],i['container_list']['load_package_list']['package_number'],i['container_list']['load_package_list']['weight'], i['container_list']['load_package_list']['destination'], i['container_list']['load_package_list']['origin']))
+                for i in data:
+                    if i["CarType"] == 'container':
+                        if i['container_list']['load_package_list']['package_type'] == 'breakable':
+                            packages_list.append(Transportation.Package.create_package(i['container_list']['load_package_list']['package_type'],i['container_list']['load_package_list']['package_number'],i['container_list']['load_package_list']['weight'], i['container_list']['load_package_list']['destination'], i['container_list']['load_package_list']['origin']))
+                        elif i['container_list']['load_package_list']['package_type'] == 'cold':
+                            packages_list.append(Transportation.Package.create_package(i['container_list']['load_package_list']['package_type'],i['container_list']['load_package_list']['package_number'],i['container_list']['load_package_list']['weight'], i['container_list']['load_package_list']['destination'], i['container_list']['load_package_list']['origin'] , i['container_list']['load_package_list']['Minimum_temperature']))
+                    elif i["CarType"] == 'simple':
+                        if i['package_list']['package_type'] =='Default':
+                            packages_list.append(Transportation.Package.create_package(i['package_list']['package_type'],i['package_list']['package_number'],i['package_list']['weight'], i['package_list']['destination'], i['package_list']['origin']))
                 
                 
                 #this is for make container(object) from barnameh  
-                for i in data:
-                    if int((i['container_list']['container_number'])) in q:
-                        temp = w
-                        w=[]
-                        w.append(i['container_list']['load_package_lists'])
-                        if temp == w:
-                            pass
-                        else:
-                            if i['container_list']['ContainerType'] == 'breakable':
-                                containers_list.append(Transportation.Container.create_container(i['container_list']['ContainerType'],q[0],i['container_list']['Maximum_weight'], i['container_list']['Maximum_package_number'], i['container_list']['Maximum_speed'],w))
-                            elif i['container_list']['ContainerType'] == 'freezer':
-                                containers_list.append(Transportation.Container.create_container(i['container_list']['ContainerType'],q[0],i['container_list']['Maximum_weight'], i['container_list']['Maximum_package_number'], i['container_list']['container_Minimum_temperature'],w))
-                    
-                    else:
-                        q=[]
-                        q.append(i['container_list']['container_number'])
+                for i in data :
+                    if i["CarType"] == 'container':
+                        if int((i['container_list']['container_number'])) in q:
+                            temp = w
+                            w=[]
+                            w.append(i['container_list']['load_package_lists'])
+                            if temp == w:
+                                pass
+                            else:
+                                if i['container_list']['ContainerType'] == 'breakable':
+                                    containers_list.append(Transportation.Container.create_container(i['container_list']['ContainerType'],q[0],i['container_list']['Maximum_weight'], i['container_list']['Maximum_package_number'], i['container_list']['Maximum_speed'],w))
+                                elif i['container_list']['ContainerType'] == 'freezer':
+                                    containers_list.append(Transportation.Container.create_container(i['container_list']['ContainerType'],q[0],i['container_list']['Maximum_weight'], i['container_list']['Maximum_package_number'], i['container_list']['container_Minimum_temperature'],w))
                         
+                        else:
+                            q=[]
+                            q.append(i['container_list']['container_number'])
+                    elif i["CarType"] == 'simple':
+                        pass      
                 q=[]
                 w=[]
                 q.append(data[0]['cars_number'])        
                 for i in data:
-                    if int((i['cars_number'])) in q:
-                        temp = w
-                        w=[]
-                        w.append(i['container_lists'])
-                        if temp ==w:
-                            pass
+                    if i["CarType"] == 'container':
+                        if int((i['cars_number'])) in q:
+                            temp = w
+                            w=[]
+                            w.append(i['container_lists'])
+                            if temp ==w:
+                                pass
+                            else:
+                                if i['CarType'] == 'container':
+                                    car_list.append(Transportation.Cars.create_car(i['CarType'],q[0],i['car_Maximum_portable_weight'] ,i['Maximum_connectable_container'],w ))
                         else:
-                            print(w)
-                            print(q)
-                    else:
-                        q=[]
-                        q.append(i['cars_number'])
-                        
+                            q=[]
+                            q.append(i['cars_number'])
+                    elif i["CarType"] == 'simple':
+                        if int((i['cars_number'])) in q:
+                            temp = w
+                            w=[]
+                            w.append(i['package_lists'])
+                            if temp ==w:
+                                pass
+                            else:
+                                if i["CarType"] == 'simple':
+                                    print(i)
+                                    car_list.append(Transportation.Cars.create_car(i['CarType'],q[0],i['car_Maximum_portable_weight'] ,i['Maximum_portable_weight'], i['Maximum_portable_number'],w))
+                        else:
+                            q=[]
+                            q.append(i['cars_number'])
+                                
         except JSONDecodeError:
             print('-------\nthere is no barnameh\n-------')
     #making barnameh        
@@ -86,6 +101,7 @@ class barname():
                         "car_Maximum_portable_weight": i.car_Maximum_portable_weight,
                         "Maximum_portable_weight": i.Maximum_portable_weight,
                         "CarType" : i.CarType,
+                        'Maximum_portable_number':i.Maximum_portable_number,
                         "package_lists" : i.package_list,
                         }
                     print('im here now')
@@ -93,7 +109,7 @@ class barname():
                         for k in package_list:
                             print('this is here')
                             if j==k.package_number:
-                                d['package_list1']={"package_number": k.package_number,
+                                d['package_list']={"package_number": k.package_number,
                                                    "weight": k.weight,
                                                    "destination": k.destination,
                                                    "origin" : k.origin,

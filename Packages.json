@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "package_number": 1,
+        "weight": 50,
+        "destination": "tehran",
+        "origin": "qom",
+        "package_type": "breakable"
+    }
+]
