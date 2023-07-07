@@ -7,7 +7,7 @@ class CRUD():
     
         def __init__(self):
             self.packages = []
-    
+        
         def load_from_file(self):
             file_name = "./Packages.json"
             json_list=[]
@@ -25,7 +25,10 @@ class CRUD():
                 pass
         
         def delete(self , DeletePackageNumber):
-            self.packages = [i for i in self.packages if i.package_number != DeletePackageNumber ]
+            for j in DeletePackageNumber:
+                print(type(j))
+                
+                self.packages = [i for i in self.packages if i.package_number != int(j) ]
 
             print(self.packages)
                     

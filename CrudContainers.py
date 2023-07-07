@@ -7,7 +7,13 @@ class CRUD1():
     
         def __init__(self):
             self.containers = []
-    
+            
+        def pack(self , id):
+            for i in self.containers:
+                if int(i.container_number) == int(id):
+                    return i
+            
+            
         def load_from_file(self):
             file_name = "./Containers.json"
             json_list=[]
@@ -16,14 +22,15 @@ class CRUD1():
                     data = json.load(f)
                     for i in range(len(data)):
                         if data[i-1]['ContainerType'] == 'breakable':
-                            self.containers.append(Transportation.Container.create_container(data[i-1]['ContainerType'],data[i-1]['container_number'],data[i-1]['Maximum_weight'], data[i-1]['Maximum_package_number'], data[i-1]['Maximum_speed']))
+                            self.containers.append(Transportation.Container.create_container(data[i-1]['ContainerType'],data[i-1]['container_number'],data[i-1]['Maximum_weight'], data[i-1]['Maximum_package_number'], data[i-1]['Maximum_speed'],data[i-1]['load_package_list']))
                         elif data[i-1]['ContainerType'] == 'freezer':
-                            self.containers.append(Transportation.Container.create_container(data[i-1]['ContainerType'],data[i-1]['container_number'],data[i-1]['Maximum_weight'], data[i-1]['Maximum_package_number'], data[i-1]['container_Minimum_temperature']))
+                            self.containers.append(Transportation.Container.create_container(data[i-1]['ContainerType'],data[i-1]['container_number'],data[i-1]['Maximum_weight'], data[i-1]['Maximum_package_number'], data[i-1]['container_Minimum_temperature'],data[i-1]['load_package_list']))
             except JSONDecodeError:
                 pass
         
         def delete(self , DeleteContainerNumber):
-            self.containers = [i for i in self.containers if i.container_number != DeleteContainerNumber ]
+            for j in DeleteContainerNumber:
+                self.containers = [i for i in self.containers if i.container_number != int(j) ]
 
             print(self.containers)
                     
@@ -46,21 +53,21 @@ class CRUD1():
             elif ContainerEditParam =='6':
                 for i in self.containers:
                     if i.container_number == ContainerEditNumber:
-                        try:
-                            i.container_Minimum_temperature = ContainerEditParamValue  
-                        except:
-                            i.Maximum_speed = ContainerEditParamValue  
+                        if i.ContainerType == 'breakable':
+                            i.Maximum_speed = ContainerEditParamValue
+                        elif i.ContainerType == 'freezer':
+                            i.container_Minimum_temperature = ContainerEditParamValue
+                             
                     
         def target(self , ContainerEditNumber):
             for i in self.containers:
                 if i.container_number == ContainerEditNumber:
                     print(str(i))
-                    # typePackage = type(i).__name__
-                    # if typePackage == 'Breakabl_Packages':
-                    #     print(str(i))
-                    # elif typePackage == 'cold_Packages':
-                    #     print(str(i))
+                    
+                    
         def show(self):
+            if len(self.containers) ==0:
+                return len(self.containers)
             for i in self.containers:
                 print(str(i))
         
