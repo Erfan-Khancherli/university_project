@@ -1,0 +1,150 @@
+[
+    {
+        "cars_number": 4,
+        "car_Maximum_portable_weight": "1230000",
+        "Maximum_connectable_container": "20",
+        "CarType": "container",
+        "container_lists": [
+            2,
+            1
+        ],
+        "container_list": {
+            "container_number": 2,
+            "Maximum_weight": "10000",
+            "Maximum_package_number": "10",
+            "ContainerType": "freezer",
+            "container_Minimum_temperature": "-60",
+            "load_package_lists": [
+                9,
+                10
+            ],
+            "load_package_list": {
+                "package_number": 9,
+                "weight": 30,
+                "destination": "t",
+                "origin": "y",
+                "package_type": "cold",
+                "Minimum_temperature": -30
+            }
+        }
+    },
+    {
+        "cars_number": 4,
+        "car_Maximum_portable_weight": "1230000",
+        "Maximum_connectable_container": "20",
+        "CarType": "container",
+        "container_lists": [
+            2,
+            1
+        ],
+        "container_list": {
+            "container_number": 2,
+            "Maximum_weight": "10000",
+            "Maximum_package_number": "10",
+            "ContainerType": "freezer",
+            "container_Minimum_temperature": "-60",
+            "load_package_lists": [
+                9,
+                10
+            ],
+            "load_package_list": {
+                "package_number": 10,
+                "weight": 40,
+                "destination": "u",
+                "origin": "i",
+                "package_type": "cold",
+                "Minimum_temperature": -40
+            }
+        }
+    },
+    {
+        "cars_number": 4,
+        "car_Maximum_portable_weight": "1230000",
+        "Maximum_connectable_container": "20",
+        "CarType": "container",
+        "container_lists": [
+            2,
+            1
+        ],
+        "container_list": {
+            "container_number": 1,
+            "Maximum_weight": "3000",
+            "Maximum_package_number": "5",
+            "ContainerType": "breakable",
+            "Maximum_speed": "120",
+            "load_package_lists": [
+                7,
+                8
+            ],
+            "load_package_list": {
+                "package_number": 7,
+                "weight": 10,
+                "destination": "q",
+                "origin": "w",
+                "package_type": "breakable"
+            }
+        }
+    },
+    {
+        "cars_number": 4,
+        "car_Maximum_portable_weight": "1230000",
+        "Maximum_connectable_container": "20",
+        "CarType": "container",
+        "container_lists": [
+            2,
+            1
+        ],
+        "container_list": {
+            "container_number": 1,
+            "Maximum_weight": "3000",
+            "Maximum_package_number": "5",
+            "ContainerType": "breakable",
+            "Maximum_speed": "120",
+            "load_package_lists": [
+                7,
+                8
+            ],
+            "load_package_list": {
+                "package_number": 8,
+                "weight": 20,
+                "destination": "e",
+                "origin": "r",
+                "package_type": "breakable"
+            }
+        }
+    },
+    {
+        "cars_number": 3,
+        "car_Maximum_portable_weight": "50000",
+        "Maximum_portable_weight": "15000",
+        "CarType": "simple",
+        "package_lists": [
+            5,
+            6
+        ],
+        "package_list1": {
+            "package_number": 5,
+            "weight": 45,
+            "destination": "qqwe",
+            "origin": "rrrr",
+            "package_type": "Default"
+        }
+    },
+    {
+        "cars_number": 3,
+        "car_Maximum_portable_weight": "50000",
+        "Maximum_portable_weight": "15000",
+        "CarType": "simple",
+        "package_lists": [
+            5,
+            6
+        ],
+        "package_list1": {
+            "package_number": 6,
+            "weight": 10,
+            "destination": "ooo",
+            "origin": "zzzz",
+            "package_type": "Default"
+        }
+    }
+]
