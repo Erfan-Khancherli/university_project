@@ -2,7 +2,6 @@ import json
 import os
 from Transportation import Transportation
 from json.decoder import JSONDecodeError
-from json.decoder import JSONDecodeError
 class barname():
     def __init__(self):
         self.barname = []
@@ -77,7 +76,6 @@ class barname():
                                 pass
                             else:
                                 if i["CarType"] == 'simple':
-                                    print(i)
                                     car_list.append(Transportation.Cars.create_car(i['CarType'],q[0],i['car_Maximum_portable_weight'] ,i['Maximum_portable_weight'], i['Maximum_portable_number'],w))
                         else:
                             q=[]
@@ -104,10 +102,8 @@ class barname():
                         'Maximum_portable_number':i.Maximum_portable_number,
                         "package_lists" : i.package_list,
                         }
-                    print('im here now')
                     for j in i.package_list:
                         for k in package_list:
-                            print('this is here')
                             if j==k.package_number:
                                 d['package_list']={"package_number": k.package_number,
                                                    "weight": k.weight,
@@ -116,7 +112,6 @@ class barname():
                                                    "package_type" : k.PackageType,
                                                    }
                                 c.append(j)
-                                print('im here')
                                 json_list.append(d)
                                 try:
                                     with open(file_name) as f:

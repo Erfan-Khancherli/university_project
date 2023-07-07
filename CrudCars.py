@@ -32,9 +32,6 @@ class CRUD2():
             for j in DeleteCarNumber:
                 self.cars = [i for i in self.cars if i.cars_number != int(j) ]
 
-            print(self.cars)
-                    
-                
         
         def add(self , car):
             self.cars.append(car)
@@ -142,8 +139,7 @@ class CRUD2():
                 except AttributeError:
                     if len(i.package_list)>0:
                         Ready_list.append(i) 
-            for i in Ready_list:
-                print(i)                        
+            return Ready_list       
         def recive(self):
             pass
         def send(self , send_car_id):

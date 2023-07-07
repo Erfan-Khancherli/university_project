@@ -304,10 +304,10 @@ if __name__ == '__main__':
                     carCrud.show()
                 elif LoadingSelector == '4':
                     packages_list = packageCrud.packages
+                    containerCrud.show()
                     id = input('give me your container number : ')
                     selected_container = containerCrud.pack(id)
                     compatibles = selected_container.show_compatible(packages_list)
-                    print(compatibles)
                     for i in compatibles:
                         print(str(i))
                     packages_id = input('give me your packages number and seprate with (,) : ')
@@ -318,10 +318,7 @@ if __name__ == '__main__':
                         packages_id =packages_id.split(',')
                         selected_container.package_to_container(compatibles , packages_id)
                         packageCrud.save()
-                    print(packages_id)
-                    containerCrud.save()
-                    
-                                
+                    containerCrud.save()   
                     break
                 elif LoadingSelector == '5':
                     packages_list = packageCrud.packages
@@ -330,38 +327,48 @@ if __name__ == '__main__':
                     id = input('give me your Car number : ')
                     selected_car = carCrud.pack(id)
                     compatibles = selected_car.show_compatible(containers_list,packages_list)
-                    print(compatibles)
-                    if type(compatibles[0]) is Transportation.Package:
-                        for i in compatibles:
-                            print(str(i))
-                        packages_id = input('give me your packages number and seprate with (,) : ')
-                        if type(packages_id) is list:
-                            selected_car.container_to_car(compatibles , packages_id)
-                            packageCrud.save()
-                        else:
-                            packages_id =packages_id.split(',')
-                            selected_car.container_to_car(compatibles , packages_id)
-                            packageCrud.save()
-                    elif type(compatibles[0]) is Transportation.Breakable_Container or Transportation.Breakable_Packages:
-                        for i in compatibles:
-                            print(str(i))
-                        packages_id = input('give me your container numbers and seprate with (,) : ')
-                        if type(packages_id) is list:
-                            selected_car.container_to_car(compatibles , packages_id)
-                            containerCrud.save()
-                        else:
-                            packages_id =packages_id.split(',')
-                            selected_car.container_to_car(compatibles , packages_id)
-                            containerCrud.save()
-                    carCrud.save()
-                    break
+                    if len(compatibles)<1:
+                        print('there is no compatibles PackageList or ContainerList')
+                        break
+                    else:
+                        print(compatibles)
+                        if type(compatibles[0]) is Transportation.Package:
+                            for i in compatibles:
+                                print(str(i))
+                            packages_id = input('give me your packages number and seprate with (,) : ')
+                            if type(packages_id) is list:
+                                selected_car.container_to_car(compatibles , packages_id)
+                                packageCrud.save()
+                            else:
+                                packages_id =packages_id.split(',')
+                                selected_car.container_to_car(compatibles , packages_id)
+                                packageCrud.save()
+                        elif type(compatibles[0]) is Transportation.Breakable_Container or Transportation.Breakable_Packages:
+                            for i in compatibles:
+                                print(str(i))
+                            packages_id = input('give me your container numbers and seprate with (,) : ')
+                            if type(packages_id) is list:
+                                selected_car.container_to_car(compatibles , packages_id)
+                                containerCrud.save()
+                            else:
+                                packages_id =packages_id.split(',')
+                                selected_car.container_to_car(compatibles , packages_id)
+                                containerCrud.save()
+                        carCrud.save()
+                        break
+                    
         elif AdminSelector == '5':
             for i in SendReciveMenu:
                 print(i)
             input1= input('enter the number  : ')
             if input1 == '1':
                 send = carCrud.Ready_car()
-                
+                if len(send)>0:
+                    for i in send:
+                        print(i)
+                else:
+                    print('there is no Ready cars') 
+                    break
             elif input1 == '2':
                 packages_list = packageCrud.packages
                 containers_list = containerCrud.containers
@@ -371,7 +378,13 @@ if __name__ == '__main__':
                 packageCrud.save()
                 containerCrud.save()  
             elif input1 == '3':
-                carCrud.Ready_car()
+                send = carCrud.Ready_car()
+                if len(send)>0:
+                    for i in send:
+                        print(i)
+                else:
+                    print('there is no Ready cars') 
+                    break
                 send_car_id = input('give me your car number that you want to send and seprate with (,): ')
                 if type(send_car_id) is list: 
                     send = carCrud.send(send_car_id)
