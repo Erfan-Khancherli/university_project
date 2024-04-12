@@ -44,17 +44,9 @@ if __name__ == '__main__':
     
     packageCrud.load_from_file()
     containerCrud.load_from_file()
-    carCrud.load_from_file()
-    # top = Tk()
+    carCrud.load_from_file() 
     
     
-    # crud1 = Button(top, text = "packages").grid(row = 0, column = 0) 
-    # crud2 = Button(top, text = "Containers").grid(row = 1, column = 0) 
-    # crud3 = Button(top, text = "Cars").grid(row = 2, column = 0)  
-    
-    
-    # top.mainloop()
-    # pass
     while(True):
         for i in AdminMenu:
             print(i)
