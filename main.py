@@ -15,7 +15,7 @@ class Login():
         self.password = password
         
     def login(self):
-        if self.username == 'admin' and self.password == '2097':
+        if self.username == 'admin' and self.password == 'admin':
             print('Done')
         else:
             print('Wrong')
@@ -24,11 +24,6 @@ def get_user_pass():
     username = input('username :')
     password = input('password :')
     return username ,password
-
-# username ,password = get_user_pass()
-# Transportation(username, password).login()
-# Transportation.CRUD(destination = 80).Add_Package()
-# CRUD('1' , 30 , 'qom' , 'tehran' , 30)
 
 if __name__ == '__main__':
     packageCrud   = CRUD()
